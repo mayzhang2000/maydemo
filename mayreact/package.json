@@ -5,7 +5,10 @@
   "dependencies": {
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "react-skylight": "^0.5.1",
+    "react-table": "^6.8.6",
+    "react-tiny-virtual-list": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
