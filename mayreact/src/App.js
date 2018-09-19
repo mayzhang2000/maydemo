@@ -14,7 +14,6 @@ class App extends Component {
   }
 
   render() {
-    const data = ['A', 'B', 'C', 'D', 'E', 'F'];
 
     const columns = [{
       Header: 'Name',  // Header of the column  
@@ -46,8 +45,8 @@ const listItems = this.state.items.map((item, index) =>
 
     return (
       <div className="App">
-        <h2>Shopping list</h2>
-      <AddItem additem={this.addItem}/>
+        <h2>Save Person</h2>
+       <AddItem additem={this.addItem}/>
       <ul>{listItems}</ul>
 
 
@@ -66,17 +65,6 @@ const listItems = this.state.items.map((item, index) =>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-
-        <VirtualList
-    width='100%'
-    height={600}
-    itemCount={data.length}
-    itemSize={50} // Also supports variable heights (array or function getter)
-    renderItem={({index, style}) =>
-      <div key={index} style={style}> Here are the values in the list: {data[index]}, Row: #{index}
-      </div>
-    }
-  />,
       </div>
     );
   }
