@@ -1,11 +1,14 @@
 package com.maydemo.maydenomodblambda;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.maydemo.maydenomodb.bean.MovieQueryBean;
 import com.maydemo.maydenomodb.bean.MovieRequestBean;
 import com.maydemo.maydenomodblambda.handlers.GetMovieHandler;
 import com.maydemo.maydenomodblambda.handlers.SaveMovieHandler;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class HandlerTest {
@@ -23,14 +26,23 @@ public class HandlerTest {
         String query = "#yr = :yyyy";
         movieQueryBean.setQuery(query);
 
-        HashMap<String, String> nameMap = new HashMap<String, String>();
-        nameMap.put("#yr", "year");
-        movieQueryBean.setNameMap(nameMap);
+        try {
+            String nameMapString = "{\"#yr\": \"year\"}";
+            HashMap<String, String> nameMap = new ObjectMapper().readValue(nameMapString,
+                    new TypeReference<HashMap<String, String>>() {
+                    });
+            movieQueryBean.setNameMap(nameMap);
 
-        HashMap<String, Object> valueMap = new HashMap<String, Object>();
-        valueMap.put(":yyyy", 2018);
-        movieQueryBean.setValueMap(valueMap);
+            String valueMapString = "{\":yyyy\": 2018}";
+            HashMap<String, Object> valueMap = new ObjectMapper().readValue(valueMapString,
+                    new TypeReference<HashMap<String, Object>>() {
+                    });
 
-        new GetMovieHandler().handleRequest(movieQueryBean, null);
+            movieQueryBean.setValueMap(valueMap);
+
+            new GetMovieHandler().handleRequest(movieQueryBean, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
