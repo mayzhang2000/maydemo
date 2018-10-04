@@ -1,44 +1,70 @@
 import React, { Component } from 'react';
+import C3Chart from 'react-c3js';
+import 'c3/c3.css';
+
+
+//Need to display buildid and status.
 
 export class Query extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { queryString: '', nameMapString: '', valueMapString: '' };
-  }
 
-  render() {
-      return (
-          <div>
-              <h1>Query.js</h1>
+    constructor(props) {
+        super(props);
+        this.state = { source: '', testId: ''};
+    }
+
+    handleChange = name => event => {
+        this.setState({ [name]: event.target.value });
+    }
+
+    render() {
+        /*
+        const data = {
+            columns: [
+                ['data1', 30, 200, 100, 400, 150, 250],
+                ['data2', 50, 20, 10, 40, 15, 25]
+            ],
+            type: 'bar'
+        };
+        */
+
+        const data = {
+            columns: [
+                ['data1', 30, 200, 200, 400, 150, 250],
+                ['data2', 130, 100, 100, 200, 150, 50]
+            ],
+            type: 'bar',
+            groups: [
+                ['data1', 'data2']
+            ]
+        };
+        return (
+            <div>
+
+                <h2/>
+                <form>
+
+                    <label>Source</label>
+                    <input type="text" name="source"  onChange={this.handleChange('source')}/>
 
 
-              <section>
-                  <h3> queryString: <input type="text" onChange={this.handleChange}/> </h3>
-                  <h3> nameMap: <input type="text" onChange={this.handleChange}/> </h3>
-                  <h3> valueMap: <input type="text" onChange={this.handleChange}/> </h3>
-              </section>
+                    <label>TestId</label>
+                    <input type="text" name="testId"  onChange={this.handleChange('testId')}/>
 
-              <form>
-
-                  <label>queryString</label>
-                  <input type="text" name="email" />
+                    <button onClick={this.fetchData} >Fetch</button>
 
 
-                  <label>Password</label>
-                  <input type="password" name="password" />
-
-              </form>
+                </form>
 
 
-              <h2>{this.state.queryString}</h2>
-          </div>
-      );
-  }
+                <h2>{this.state.source}</h2>
+
+                <C3Chart data={data} />
+
+            </div>
+        );
+    }
 
 
 
-    handleChange = (e) => {
-          this.setState({queryString: e.target.value});
-      }
 }
 
