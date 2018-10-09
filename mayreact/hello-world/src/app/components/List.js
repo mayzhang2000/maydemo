@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import "../../App.css";
 
 export class List extends Component {
 
@@ -22,7 +23,7 @@ export class List extends Component {
 
 
     return (
-      <div>
+      <div className="App">
           <ReactTable
               data={data}
               columns={columns}
