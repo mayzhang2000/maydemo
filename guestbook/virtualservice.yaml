@@ -3,7 +3,7 @@ kind: VirtualService
 metadata:
   name: rollout-vsvc
   annotations:
-    argocd.argoproj.io/sync-options: RespectIgnoreDifferences=true
+    argocd.argoproj.io/sync-options: RespectIgnoreDifferences=false
 spec:
   hosts:
     - dummy.qal.intuit.sandbox.sandbox.argocd2testapp.mesh
