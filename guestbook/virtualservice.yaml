@@ -3,19 +3,19 @@ kind: VirtualService
 metadata:
   name: rollout-vsvc
   annotations:
-    argocd.argoproj.io/sync-options: RespectIgnoreDifferences=false
+    argocd.argoproj.io/sync-options: RespectIgnoreDifferences=true
 spec:
   hosts:
     - dummy.qal.intuit.sandbox.sandbox.argocd2testapp.mesh
   http:
-#    - name: primary
-#      route:
-#        - destination:
-#            host: ping
-#          weight: 100
-#        - destination:
-#            host: pong
-#          weight: 0
+    - name: primary
+      route:
+        - destination:
+            host: ping
+          weight: 100
+        - destination:
+            host: pong
+          weight: 0
     - name: secondary
       route:
         - destination:

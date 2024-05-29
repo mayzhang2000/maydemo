@@ -10,14 +10,14 @@ spec:
   hosts:
     - dummy.qal.intuit.sandbox.sandbox.argocd2testapp.mesh
   http:
-#    - name: primary
-#      route:
-#        - destination:
-#            host: three-service
-#          weight: 100
-#        - destination:
-#            host: four-service
-#          weight: 0
+    - name: primary
+      route:
+        - destination:
+            host: three-service
+          weight: 100
+        - destination:
+            host: four-service
+          weight: 0
     - name: secondary
       route:
         - destination:
