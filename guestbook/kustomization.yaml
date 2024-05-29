@@ -5,3 +5,4 @@ resources:
   - ./guestbook-ui-deployment.yaml
   - ./guestbook-ui-svc.yaml
   - ./virtualservice.yaml
+  - ./VirtualService2.yaml

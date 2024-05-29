@@ -1,0 +1,28 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  labels:
+    applications.argoproj.io/app-name: sandbox-sandbox-argocd2testapp-usw2-qal
+  name: argocd2testapp-rollout-vsvc2
+spec:
+  exportTo:
+    - '*'
+  hosts:
+    - dummy.qal.intuit.sandbox.sandbox.argocd2testapp.mesh
+  http:
+#    - name: primary
+#      route:
+#        - destination:
+#            host: three-service
+#          weight: 100
+#        - destination:
+#            host: four-service
+#          weight: 0
+    - name: secondary
+      route:
+        - destination:
+            host: argocd2testapp-ping-service
+          weight: 100
+        - destination:
+            host: argocd2testapp-pong-service
+          weight: 0
