@@ -8,8 +8,8 @@ spec:
   hosts:
     - dummy.qal.intuit.sandbox.sandbox.argocd2testapp.mesh
   http:
-    - name: primary
-      route:
+#    - name: primary
+#      route:
 #        - destination:
 #            host: ping
 #          weight: 100
